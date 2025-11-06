@@ -3,6 +3,7 @@ import Hero3D from './components/Hero3D';
 import UploadArea from './components/UploadArea';
 import ARViewer from './components/ARViewer';
 import ShareCard from './components/ShareCard';
+import CorsDiagnostics from './components/CorsDiagnostics';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
 
@@ -40,7 +41,7 @@ export default function App() {
           const hint = mixedContent
             ? 'Your site is on HTTPS but the API is HTTP. Update VITE_BACKEND_URL to an HTTPS URL.'
             : "The API is unreachable. Confirm VITE_BACKEND_URL points to the live backend.";
-          setBackendHealth({ ok: false, message: `${e?.message || 'Network error'}. ${hint}` });
+        setBackendHealth({ ok: false, message: `${e?.message || 'Network error'}. ${hint}` });
         }
       }
     })();
@@ -116,6 +117,7 @@ export default function App() {
         <UploadArea onUpload={handleUpload} />
         <ARViewer src={modelUrl} />
         <ShareCard url={shareUrl} />
+        <CorsDiagnostics />
 
         <section id="image2three" className="mx-auto w-full max-w-5xl px-6">
           <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
