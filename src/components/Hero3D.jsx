@@ -7,7 +7,7 @@ export default function Hero3D() {
     <section className="relative h-[75vh] md:h-[85vh] w-full overflow-hidden">
       <div className="absolute inset-0">
         <Spline
-          scene="https://prod.spline.design/VyGeZv58yuk8j7Yy/scene.splinecode"
+          scene="https://prod.spline.design/qQUip0dJPqrrPryE/scene.splinecode"
           style={{ width: '100%', height: '100%' }}
         />
       </div>
@@ -18,14 +18,14 @@ export default function Hero3D() {
       <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-6">
         <div className="max-w-2xl text-white">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs backdrop-blur">
-            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-            Live 3D • AR Ready
+            <span className="h-2 w-2 animate-pulse rounded-full bg-sky-400" />
+            Holographic Identity • AR Ready
           </div>
           <h1 className="font-heading text-4xl font-semibold leading-tight md:text-6xl">
-            Convert images into 3D or upload models to view in AR
+            Share interactive 3D identity in AR
           </h1>
           <p className="mt-4 text-sm text-white/80 md:text-base">
-            A minimalist, futuristic space to turn ideas into interactive 3D. Upload GLB/USDZ, preview instantly, share with a link or QR.
+            Upload GLB/USDZ models or generate from images (coming soon). Preview instantly, then share with a secure link or QR code.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#upload" className="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-black transition hover:bg-white/90">
