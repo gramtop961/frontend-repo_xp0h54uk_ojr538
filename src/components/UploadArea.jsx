@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Upload, Loader2, Check, AlertCircle } from 'lucide-react';
+import { Upload, Loader2, AlertCircle } from 'lucide-react';
 
 export default function UploadArea({ onUpload }) {
   const inputRef = useRef(null);
@@ -26,11 +26,11 @@ export default function UploadArea({ onUpload }) {
     setLoading(true);
 
     try {
-      // Pass file up to parent to handle API upload
       await onUpload(file);
     } catch (e) {
       console.error(e);
-      setError('Upload failed. Please try again.');
+      const message = typeof e?.message === 'string' && e.message.trim() ? e.message : 'Upload failed. Please try again.';
+      setError(message);
     } finally {
       setLoading(false);
     }
@@ -89,7 +89,7 @@ export default function UploadArea({ onUpload }) {
           {error && (
             <div className="mt-3 inline-flex items-center gap-2 rounded-md border border-red-500/30 bg-red-500/10 px-3 py-2 text-left text-sm text-red-200">
               <AlertCircle className="h-4 w-4" />
-              <span>{error}</span>
+              <span className="max-w-[38ch] truncate" title={error}>{error}</span>
             </div>
           )}
         </div>
