@@ -39,7 +39,7 @@ export default function App() {
           const mixedContent = isSecureContext && !backendIsHttps;
           const hint = mixedContent
             ? 'Your site is on HTTPS but the API is HTTP. Update VITE_BACKEND_URL to an HTTPS URL.'
-            : 'The API is unreachable. Confirm VITE_BACKEND_URL points to the live backend.';
+            : "The API is unreachable. Confirm VITE_BACKEND_URL points to the live backend.";
           setBackendHealth({ ok: false, message: `${e?.message || 'Network error'}. ${hint}` });
         }
       }
@@ -62,15 +62,17 @@ export default function App() {
       });
     } catch (e) {
       const mixedContent = isSecureContext && !backendIsHttps;
-      const hint = mixedContent
-        ? ' Your site is on HTTPS but the API is HTTP. Use an HTTPS API URL.'
-        : '';
-      throw new Error(`${e?.message || 'Network error.'}${hint}`.trim());
+      const base = e?.message || 'Network error.';
+      const mixedHint = mixedContent ? ' Your site is on HTTPS but the API is HTTP. Use an HTTPS API URL.' : '';
+      const corsHint = ' If the API is HTTPS and reachable, ensure it sends Access-Control-Allow-Origin with your frontend origin (or *), and allows POST on /upload.';
+      throw new Error(`${base}${mixedHint}${corsHint}`.trim());
     }
 
     if (!res.ok) {
       const t = await res.text();
-      throw new Error(t || 'Upload failed');
+      // Help users who run into opaque/CORS errors where body may be empty
+      const extra = res.status === 0 ? ' Possible CORS error: backend must include Access-Control-Allow-Origin header.' : '';
+      throw new Error((t || 'Upload failed') + extra);
     }
     const data = await res.json();
     // data: { id, url }
